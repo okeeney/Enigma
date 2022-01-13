@@ -4,6 +4,8 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+
 
 public final class Enigma {
 
@@ -28,7 +30,7 @@ public final class Enigma {
                 //Gets index of first occurance of temp char in rotor
                 int charIndex = s.indexOf(temp);
 
-                //If rotor rotatio does not apply, apply the increment
+                //If rotor rotation does not apply, apply the increment
                 if(charIndex + incrementNumber < s.length())
                 {
                     temp = s.charAt(charIndex + incrementNumber);
@@ -59,7 +61,48 @@ public final class Enigma {
         // 2. Apply the CAESAR shift
         // 3. Return the decrypted string
 
-        return "Implement the decrypt";
+        char[] cList = message.toCharArray();
+
+        //returns a reversed rotors List
+        Collections.reverse(rotors);
+
+
+        for(int i = 0; i < cList.length; i++) {
+
+            if(cList[i] == ' ')continue;
+
+            char temp = cList[i];
+
+            //for each iterates through the reversed rotor list
+            for (String x : rotors) {
+
+                int charIndex = x.indexOf(temp);
+
+                //if the decrementing number needs to pass zero
+                if(charIndex - incrementNumber < 0)
+                {
+                    //determines the amount of positions it needs to pass zero by
+                    //and gets the character at length-(that amount)
+                    temp = x.charAt((x.length())+(charIndex-incrementNumber));
+                }
+
+                //assigns the rotated value to the temp position
+                //in cases where it is not crossing zero
+                else
+                {
+                    temp = x.charAt(charIndex - incrementNumber);
+                    System.out.println(temp + " here");
+
+                }
+
+                //assigns the value back to the message array
+                cList[i] = temp;
+            }
+
+        }
+
+        //typecasts back to string to return for display
+        return String.valueOf(cList);
 
     }
 }

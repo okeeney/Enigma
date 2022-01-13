@@ -8,7 +8,7 @@ public class Main {
         // Obtain a reference to the console
         Console con = System.console();
 
-        System.out.println("Hello world");
+        System.out.println("Hello World");
 
         // List of rotors to map characters. Spaces in the rotor strings should be ignored.
         List<String> rotors = new ArrayList<String>();
@@ -19,7 +19,7 @@ public class Main {
         // ToDO
         // Get a start message, encrypt it and then decrypt it
 
-        String startMessage = "Hello world";
+        String startMessage = "Hello World";
         String encryptedMessage = Enigma.Encrypt(startMessage, 4, rotors);
         System.out.println("The encrypted message is: " + encryptedMessage);
 
