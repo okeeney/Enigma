@@ -4,6 +4,8 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+
 
 public final class Enigma {
 
@@ -28,7 +30,6 @@ public final class Enigma {
                 //Gets index of first occurance of temp char in rotor
                 int charIndex = s.indexOf(temp);
 
-                //If rotor rotatio does not apply, apply the increment
                 if(charIndex + incrementNumber < s.length())
                 {
                     temp = s.charAt(charIndex + incrementNumber);
@@ -53,13 +54,35 @@ public final class Enigma {
     {
         // TODO - Implement the Decrypt method
 
-        // Steps in brief
-        // 1. For each rotor in the list rotors, starting with the last rotor
-        //  1.1 Translate the message using the rotor
-        // 2. Apply the CAESAR shift
-        // 3. Return the decrypted string
+        //Create a fully uppercase version of message.
+        String upperShift = message.toUpperCase();
 
-        return "Implement the decrypt";
+        //Convert message to char array
+        char[] charList = upperShift.toCharArray();
 
+        for(int i = 0; i < charList.length; i++) {
+            //if char at index is a space, continue with loop
+            if (charList[i] == ' ') continue;
+
+            //Assign char @ current index to temp variable
+            char temp = charList[i];
+
+            for (int j = rotors.size() - 1; j > -1; j--) {
+                //Gets index of first occurance of temp char in rotor
+                int charIndex = rotors.get(j).indexOf(temp);
+
+                //If rotor rotatio does not apply, apply the decrement
+                if (charIndex - incrementNumber > -1) {
+                    temp = rotors.get(j).charAt(charIndex - incrementNumber);
+                } else {
+                    //Create an int to specify rotation if applying caeser shift will complete a full rotation of rotor
+                    int rotation = (charIndex - incrementNumber) * -1;
+                    temp = rotors.get(j).charAt(rotors.get(j).length() - (rotation));
+                }
+                charList[i] = temp;
+            }
+            //return char array as string
+        }
+        return String.valueOf(charList);
     }
 }
