@@ -1,14 +1,26 @@
-/// Filename: Enigma.java
-// / Author: Dr. Shane Wilson
-/// Description: Add a useful description of this file
 
-import java.util.ArrayList;
+
+/**
+ * This is a simple class to encrypt/decrypt a String using Caeser shift type, basic encryption.
+ * @FileName Enigma
+ * @author Oisin Keeney
+ * @author David Curtin
+ *
+ *
+ */
+
 import java.util.List;
-import java.util.Collections;
 
 
 public final class Enigma {
 
+    /**
+     *
+     * @param message - this is the message to be encrypted.
+     * @param incrementNumber - this is the amount of letters forward you wish to apply as the shift
+     * @param rotors - strings of random characters to apply complexity to the shift.
+     * @return - char array converted to a string
+     */
     public static String Encrypt(String message, int incrementNumber, List<String> rotors)
     {
         //Create a fully uppercase version of message.
@@ -49,7 +61,13 @@ public final class Enigma {
         return String.valueOf(charList);
     }
 
-
+    /**
+     *
+     * @param message - the message to be decrypted
+     * @param incrementNumber - the amount of shift that was applied to encrypt the message
+     * @param rotors - the list of strings that were used to apply complexity to the shift
+     * @return  - returns a char array converted to a string
+     */
     public static String Decrypt(String message, int incrementNumber, List<String> rotors)
     {
         // TODO - Implement the Decrypt method
